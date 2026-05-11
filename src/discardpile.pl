@@ -17,18 +17,18 @@ discardPile :-
 
     retractall(deck(_)),
     asserta(deck(Rest)),
-    retractall(discardPile(_)),
+    retractall(discard_pile(_)),
     asserta(discard_pile([FirstCard])),
 
     FirstCard = kartu(X, Y),
-    write('Kartu discard top: '), write(X), write('-'), write(Y), write('.'), nl.
+    write('Kartu discard top: '), write(X), write('-'), write(Y), write('.'), nl, nl.
 
 % Fungsi Helper, akan mengambil kartu kembali 
 % jika kartu yang diambil bukan kartu angka
 takeDiscardPile(List, FirstCard, Rest):-
     random_pick(List, X, Rest1),
     notAngka(X), !,
-    takeDiscardPile(List, FirstCard, Rest).
+    takeDiscardPile(Rest1, FirstCard, Rest).
 
 takeDiscardPile(List, FirstCard, Rest) :-
     random_pick(List, FirstCard, Rest).
