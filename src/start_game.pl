@@ -1,15 +1,18 @@
 /* FILES */
 :- include('randomize.pl').
 :- include('discardpile.pl').
+:- include('giliran.pl').
 
 /* START THE GAME */
 % main function
 startGame :-
     amountOfPlayers(Jumlah), nl, % check amount
     nameOfPlayers([], Jumlah, 1, AllNames), nl, % masukin nama, nama final di AllNames
-    urutanPemain(AllNames, Jumlah),  % buat random order
+    urutanPemain(AllNames, Jumlah, ListUrutan),  % buat random order
     write('Setiap pemain mendapatkan 7 kartu acak.'), nl, nl,
-    discardPile. % show first card
+    discardPile, % show first card
+    updateList(ListUrutan),
+    currentPlayer.
 
 
 % Dapet input berapa player
@@ -22,12 +25,13 @@ amountOfPlayers(Jumlah) :-
     % else, lanjut
     ; Jumlah = N). % if 2 - 4, valid
 
-% Dapet input nama player
+% Check if nama udah di list
 isNameInList([Name|_], Name). % if same, return true
 
 isNameInList([_|Tail], Name) :- % if not same continue
     isNameInList(Tail, Name).
 
+% Dapet input nama player
 nameOfPlayers(_, Jumlah, Count,[]) :- % basis if jumlah atau counter 0, stop
     Count > Jumlah.
 
@@ -43,18 +47,24 @@ nameOfPlayers(StartList, Jumlah, Count, [Name | Tail]) :- % rekursi
     Name = TempName,
     nameOfPlayers([Name | StartList], Jumlah, Count1, Tail)).
 
-% Output order main random
-urutanPemain(AllNames, Jumlah) :-
+% Make random order for pemain
+urutanPemain(AllNames, Jumlah, ListUrutan) :-
     write('Urutan pemain: '),
-    makeUrutan(AllNames, Jumlah),
-    write('.'), nl, nl.
+    makeUrutan(AllNames, Jumlah, ListUrutan),
+    outputListUrutan(ListUrutan).
 
-makeUrutan([], 0). % basis kalau jumlah 0, stop
+makeUrutan(_, 0, []). % basis kalau jumlah 0, stop
 
-makeUrutan(AllNames, Jumlah) :- % rekursi
+makeUrutan(AllNames, Jumlah, [Name | Tail]) :- % rekursi
     Jumlah > 0,
     random_pick(AllNames, Name, NamesLeft), % randomize urutan
-    write(Name),
     Jumlah1 is Jumlah - 1,
-    (Jumlah1 > 0 -> write(' - ') ; true),
-    makeUrutan(NamesLeft, Jumlah1).
+    makeUrutan(NamesLeft, Jumlah1, Tail).
+
+% Output / Printing hasilnya
+outputListUrutan([]).
+
+outputListUrutan([Head | Tail]) :-
+    write(Head), 
+    ((Tail \= []) -> write(' - ') ; (write('.'), nl, nl)), % check if udah akhir atau gak
+    outputListUrutan(Tail).
