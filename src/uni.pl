@@ -6,8 +6,8 @@
 /*list yang udh teriak uni*/
 status_uni([]). 
 
-hitung_kartu ([],0).
-hitung_kartu ([_|Tail], N) :- hitung_kartu(Tail, NewN),
+hitung_kartu([],0).
+hitung_kartu([_|Tail], N) :- hitung_kartu(Tail, NewN),
                                  N is NewN+1.
 
 uni(Indeks_kartu) :- giliran([Player|_]),
