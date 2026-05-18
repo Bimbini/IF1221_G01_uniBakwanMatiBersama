@@ -1,3 +1,4 @@
+
 :- dynamic(status_uni/1). 
 :- dynamic(player_hand/2).
 :- dynamic(giliran/1).

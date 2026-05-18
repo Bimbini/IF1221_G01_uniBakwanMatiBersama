@@ -1,5 +1,5 @@
-:- include('randomize.pl').
-:- include('facts.pl').
+%:- include('randomize.pl').
+%:- include('facts.pl').
 
 :- dynamic(deck/1).
 :- dynamic(last_played/2).
@@ -12,12 +12,11 @@ notAngka(kartu(_, draw_two)).
 
 % Fungsi Discard Pile untuk start game
 discardPile :-
-    all_cards(All),
-    takeDiscardPile(All, FirstCard, Rest),
+    deck(DeckBefore),
+    takeDiscardPile(DeckBefore, FirstCard, Rest),
+    updateDeck(Rest),
 
-    retractall(deck(_)),
-    asserta(deck(Rest)),
-    retractall(last_played(_)),
+    retractall(last_played(_, _)),
     asserta(last_played(start, FirstCard)),
 
     FirstCard = kartu(X, Y),
