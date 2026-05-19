@@ -1,7 +1,8 @@
+/*
 :- include('random7cards.pl').
 :- include('giliran.pl').
 :- include('efekKartu.pl').
-
+*/
 
 ambilKartu :-
     giliran([Player | _]),
