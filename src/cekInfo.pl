@@ -1,6 +1,6 @@
-:- dynamic(player_hand/2).
-:- dynamic(giliran/1).
-:- dynamic(last_played/2). %argumen player dan kartu terakhir yg dikeluarin
+%:- dynamic(player_hand/2).
+%:- dynamic(giliran/1).
+%:- dynamic(last_played/2). %argumen player dan kartu terakhir yg dikeluarin
 
 % Main fungsi cekInfo
 cekInfo :-
