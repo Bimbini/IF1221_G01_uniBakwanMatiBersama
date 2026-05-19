@@ -1,7 +1,8 @@
-/* FILES */
-%:- include('randomize.pl').
-%:- include('discardpile.pl').
-%:- include('giliran.pl').
+/* FILES 
+:- include('randomize.pl').
+:- include('discardpile.pl').
+:- include('giliran.pl').
+*/
 
 /* START THE GAME */
 % main function
@@ -21,15 +22,35 @@ startGame :-
     currentPlayer.
 
 
+% Facts Digits
+digit(0).
+digit(1).
+digit(2).
+digit(3).
+digit(4).
+digit(5).
+digit(6).
+digit(7).
+digit(8).
+digit(9).
+
+digitValid(2).
+digitValid(3).
+digitValid(4).
+
 % Dapet input berapa player
 amountOfPlayers(Jumlah) :-
     write('Masukan jumlah pemain: '),
     read(N),
-    % if jumlah not 2 - 4, error
-    ((N < 2 ; N > 4) -> 
-    write('Mohon masukkan angka antara 2 - 4.'), nl, amountOfPlayers(Jumlah)
-    % else, lanjut
-    ; Jumlah = N). % if 2 - 4, valid
+    % if N is a digit
+    (digit(N) -> 
+        % if jumlah 2, 3, atau 4, lanjut
+        (digitValid(N) -> 
+        Jumlah = N
+        % else, error
+        ; write('Mohon masukkan angka antara 2 - 4.'), nl, amountOfPlayers(Jumlah)) 
+    ; % else, error
+    write('Mohon masukkan angka antara 2 - 4.'), nl, amountOfPlayers(Jumlah)).
 
 % Check if nama udah di list
 isNameInList([Name|_], Name). % if same, return true
