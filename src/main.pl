@@ -1,3 +1,13 @@
+/* LIST */
+:- dynamic(last_played/2).
+:- dynamic(player_hand/2).
+:- dynamic(current_player/1).
+:- dynamic(discard_top/1).
+:- dynamic(current_color/1).
+:- dynamic(giliran/1).
+:- dynamic(status_uni/1).
+:- dynamic(deck/1).
+
 /* FILES */
 :-include('start_game.pl').
 :-include('end_game.pl').
@@ -15,13 +25,3 @@
 :-include('tantang.pl').
 :-include('uni.pl').
 :-include('tangkap.pl').
-
-/* LIST */
-:- dynamic(last_played/2).
-:- dynamic(player_hand/2).
-:- dynamic(current_player/1).
-:- dynamic(discard_top/1).
-:- dynamic(current_color/1).
-:- dynamic(giliran/1).
-:- dynamic(status_uni/1).
-:- dynamic(deck/1).
