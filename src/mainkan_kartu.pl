@@ -1,3 +1,5 @@
+:- include('efekKartu.pl'). %FIX
+
 :- dynamic(last_played/2). % revisi 
 :- dynamic(player_hand/2).
 :- dynamic(current_player/1).
@@ -59,7 +61,7 @@ buang_kartu(Pemain, kartu(W,J)) :-
     ),
     (length(NewHand,0)->format('HORE! ~w memenangkan permainan!~n', [Pemain]) 
     ; 
-        write('giliran ke pemain berikutnya...'), nl
+        efek_kartu(W,J) %FIX
     ).
 
 
