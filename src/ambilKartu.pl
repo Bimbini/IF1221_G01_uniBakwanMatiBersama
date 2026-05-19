@@ -1,6 +1,6 @@
 :- include('random7cards.pl').
 :- include('giliran.pl').
-:- include('efek_kartu.pl').
+:- include('efekKartu.pl').
 
 
 ambilKartu :-
