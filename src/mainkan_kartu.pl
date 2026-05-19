@@ -29,6 +29,45 @@ mainkanKartu(Urutan):-
         write('Gagal, kartu tersebut tidak kamu miliki!'), nl, fail
     ).    
 
+handle_effect(skip) :-
+    pindah_giliran,
+    write('Pemain berikutnya dilewati!'), nl,
+    pindah_giliran.
+
+
+handle_effect(reverse) :-
+    write('Arah permainan dibalik!'), nl.
+
+
+handle_effect(draw_two) :-
+
+    pindah_giliran,
+
+    current_player(Target),
+    drawCard(Target),
+    drawCard(Target),
+    write(Target),
+    write('mengambil 2 kartu!'), nl,
+
+    pindah_giliran.
+
+handle_effect(wild_draw_four) :-
+
+    pindah_giliran,
+
+    current_player(Target),
+
+    drawCard(Target),
+    drawCard(Target),
+    drawCard(Target),
+    drawCard(Target),
+
+    write(Target),
+    write(' mengambil 4 kartu!'), nl,
+
+    pindah_giliran.
+
+    handle_effect(_).
 
 pindah_giliran :-
     retract(urutan_pemain([Current | Sisa])), 
