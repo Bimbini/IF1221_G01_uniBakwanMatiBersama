@@ -1,5 +1,5 @@
-:- dynamic(player_hand/2).
-:- dynamic(giliran/1).
+%:- dynamic(player_hand/2).
+%:- dynamic(giliran/1).
 
 /*Deklarasi Rules*/
 lihatKartu :- write('Berikut kartu yang anda miliki'), nl, 
