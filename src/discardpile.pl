@@ -16,7 +16,7 @@ discardPile :-
     takeDiscardPile(DeckBefore, FirstCard, Rest),
     updateDeck(Rest),
 
-    retractall(last_played(_)),
+    retractall(last_played(_, _)),
     asserta(last_played(start, FirstCard)),
 
     FirstCard = kartu(X, Y),
