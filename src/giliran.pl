@@ -1,4 +1,4 @@
-:- dynamic giliran/1.
+:- dynamic(giliran/1).
 :- dynamic(arah/1).
 :- (arah(_) -> true ; assertz(arah(clockwise))).
 
