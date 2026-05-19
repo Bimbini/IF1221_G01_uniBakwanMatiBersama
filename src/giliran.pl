@@ -3,7 +3,7 @@
 :- initialization(init_arah).
 
 init_arah :-
-    (arah(_) ->)
+    (arah(_) ->).
 
 giliran([]).
 
