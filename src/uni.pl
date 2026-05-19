@@ -20,14 +20,14 @@ uni(Indeks_kartu) :- giliran([Player|_]),
                     append_list(ListLama, Player, ListBaru),
                     retractall(status_uni(_)),
                     assertz(status_uni(ListBaru)),
-                    pindah_giliran.
+                    currentPlayer.
 
 uni(_) :- giliran([Player|_]),
                     player_hand(Player, Cards),
                     \+hitung_kartu(Cards, 2),
                     format('Perintah UNI gagal! ~w mendapat 1 kartu penalti. ~n', [Player]),
                     ambilKartuPenalti(Player,Cards),
-                    pindah_giliran.
+                    currentPlayer.
 
 ambilKartuPenalti(Player, Cards):- deck(DeckAwal),
                                     takeNrandom(1, DeckAwal, [Kartu], DeckBaru),
