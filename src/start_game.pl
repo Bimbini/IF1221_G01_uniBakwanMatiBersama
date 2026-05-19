@@ -13,8 +13,8 @@ startGame :-
     all_cards(All),
     giveCards(ListUrutan, All, DeckAfter),
     updateDeck(DeckAfter),
-    updateList(ListUrutan),
-    discardPile.
+    discardPile,
+    currentPlayer.
 
 
 % Dapet input berapa player
