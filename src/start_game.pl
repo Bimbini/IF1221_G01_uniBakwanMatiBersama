@@ -1,7 +1,8 @@
-/* FILES */
+/* FILES 
 :- include('randomize.pl').
 :- include('discardpile.pl').
 :- include('giliran.pl').
+*/
 
 /* START THE GAME */
 % main function
@@ -9,10 +10,16 @@ startGame :-
     amountOfPlayers(Jumlah), nl, % check amount
     nameOfPlayers([], Jumlah, 1, AllNames), nl, % masukin nama, nama final di AllNames
     urutanPemain(AllNames, Jumlah, ListUrutan),  % buat random order
+
     write('Setiap pemain mendapatkan 7 kartu acak.'), nl, nl,
+    all_cards(All),
+    giveCards(ListUrutan, All, DeckAfter),
+    updateDeck(DeckAfter),
+
     discardPile, % show first card
-    updateList(ListUrutan),
-    currentPlayer.
+
+    updateList(ListUrutan).
+    %currentPlayer.
 
 
 % Dapet input berapa player
