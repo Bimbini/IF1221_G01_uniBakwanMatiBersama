@@ -12,8 +12,8 @@ efek_kartu(_,J) :-
 % SKIP skip to the next person
 efek_kartu(_,skip) :- !,
     currentPlayer,          % "sekarang giliran A", next
-    giliran([Diskip | _]),        % ambil siapa yang kena skip
-    format('[SKIP] ~w diskip~n', [Diskip]),
+    giliran([Player | _]),        % ambil siapa yang kena skip
+    format('[SKIP] ~w diskip~n', [Player]),
     currentPlayer.          % "sekarang giliran B", next
 
 % REVERSE — balik arah urutan
@@ -24,9 +24,9 @@ efek_kartu(_,reverse) :- !,
 
 % DRAW TWO ambil 2 kartu , skip
 efek_kartu(_,draw_two) :- !,
-    giliran([Korban | _]),
-    format('[DRAW TWO] ~w ambil 2 kartu~n', [Korban]),
-    ambilNKartu(2, Korban),       % ambil 2 kartu
+    giliran([Player | _]),
+    format('[DRAW TWO] ~w ambil 2 kartu~n', [Player]),
+    ambilNKartu(2, Player),       % ambil 2 kartu
     currentPlayer.          % next
 
 % WILD warna udah diganti di buang_kartu, tinggal pindah giliran
@@ -35,7 +35,7 @@ efek_kartu(_,wild) :- !,
 
 % WILD DRAW FOUR berikutnya ambil 4 kartu lalu di-skip
 efek_kartu(_,wild_draw_four) :- !, 
-    giliran([Korban | _]),
-    format('[WILD DRAW FOUR] ~w ambil 4 kartu~n', [Korban]),
-    ambilNKartu(4, Korban),       % ambil 4 kartu
+    giliran([Player | _]),
+    format('[WILD DRAW FOUR] ~w ambil 4 kartu~n', [Player]),
+    ambilNKartu(4, Player),       % ambil 4 kartu
     currentPlayer.          % next
