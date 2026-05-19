@@ -1,9 +1,5 @@
 :- dynamic(giliran/1).
 :- dynamic(arah/1).
-:- initialization(init_arah).
-
-init_arah :-
-    (arah(_) ->).
 
 giliran([]).
 
