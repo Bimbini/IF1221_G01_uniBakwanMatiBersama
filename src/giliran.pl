@@ -1,6 +1,9 @@
 :- dynamic(giliran/1).
 :- dynamic(arah/1).
-:- (arah(_) -> true ; assertz(arah(clockwise))).
+:- initialization(init_arah).
+
+init_arah :-
+    (arah(_) ->)
 
 giliran([]).
 
@@ -12,7 +15,13 @@ baru list update the next person di paling depan list */
 currentPlayer :-
     giliran([H | _]),
     format('Giliran ~w.~n~n', [H]),
-    (arah(clockwise) -> rotate_kiri ; rotate_kanan).
+    arah(clockwise), !,
+    rotate_kiri.
+
+currentPlayer :-
+    giliran([H | _]),
+    format('Giliran ~w.~n~n', [H]),
+    rotate_kanan.
 
 rotate_kiri :-
     giliran([H | T]),
