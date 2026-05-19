@@ -1,10 +1,10 @@
 %:- include('random7cards.pl').
 
-:- dynamic(last_played/2).
-:- dynamic(player_hand/2).
-:- dynamic(current_player/1).
-:- dynamic(current_color/1).
-:- dynamic(deck/1).
+%:- dynamic(last_played/2).
+%:- dynamic(player_hand/2).
+%:- dynamic(current_player/1).
+%:- dynamic(current_color/1).
+%:- dynamic(deck/1).
 
 tantang :-
     last_played(PrevPlayer, kartu(hitam, wild_draw_four)), !,

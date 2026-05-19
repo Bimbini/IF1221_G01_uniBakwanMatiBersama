@@ -1,8 +1,8 @@
-:- dynamic(last_played/2). % revisi 
-:- dynamic(player_hand/2).
-:- dynamic(current_player/1).
-:- dynamic(discard_top/1).
-:- dynamic(current_color/1).
+%:- dynamic(last_played/2). % revisi 
+%:- dynamic(player_hand/2).
+%:- dynamic(current_player/1).
+%:- dynamic(discard_top/1).
+%:- dynamic(current_color/1).
 
 
 

@@ -1,6 +1,6 @@
-:- dynamic(player_hand/2).
-:- dynamic(giliran/1).
-:- dynamic(status_uni/1).
+%:- dynamic(player_hand/2).
+%:- dynamic(giliran/1).
+%:- dynamic(status_uni/1).
 
 tangkap(Player) :- player_hand(Player, Cards),
                 hitung_kartu(Cards, 1),

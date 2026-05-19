@@ -1,5 +1,5 @@
-:- include('random7cards.pl').
-:- include('giliran.pl').
+%:- include('random7cards.pl').
+%:- include('giliran.pl').
 
 % mulai setelah currentPlayer
 ambilKartu :-
@@ -15,7 +15,7 @@ jumlahKartuDiambil(_, 1).
 ambilNKartu(0, _) :- !.
 ambilNKartu(N, Player) :- 
     N > 0,
-    deck(DeckBefore) /* perlu call updateDeck dulu sebelum ini*/
+    deck(DeckBefore), /* perlu call updateDeck dulu sebelum ini*/
     takeNrandom(1, DeckBefore, [Card], DeckAfter),
     assertz(hand(Player,Card)),
     updateDeck(DeckAfter),

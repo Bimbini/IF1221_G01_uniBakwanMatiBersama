@@ -1,4 +1,4 @@
-:- dynamic(last_played/2).
+%:- dynamic(last_played/2).
 /*deklarasi rules*/
 lihatCommand :- write('Aksi utama yang tersedia: '), nl,
                 write('1. ambilKartu'), nl,

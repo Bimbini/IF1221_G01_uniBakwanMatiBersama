@@ -1,8 +1,8 @@
 %:- include('randomize.pl').
 %:- include('facts.pl').
 
-:- dynamic(deck/1).
-:- dynamic(last_played/2).
+%:- dynamic(deck/1).
+%:- dynamic(last_played/2).
 
 % Validasi jika kartu tidak termasuk kategori kartu angka
 notAngka(kartu(hitam, _)).
