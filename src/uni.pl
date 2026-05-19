@@ -21,7 +21,7 @@ uni(Indeks_kartu) :- giliran([Player|_]),
                         true
 
                     ),!.
->>>>>>> a4edf74 (fix: fix validation logic)
+
 
 uni(_) :- giliran([Player|_]),
                     player_hand(Player, Cards),
