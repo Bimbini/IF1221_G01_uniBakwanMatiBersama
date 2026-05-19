@@ -1,9 +1,4 @@
 
-%:- dynamic(status_uni/1). 
-%:- dynamic(player_hand/2).
-%:- dynamic(giliran/1).
-%:- dynamic(deck/1).
-
 /*list yang udh teriak uni*/
 status_uni([]). 
 
@@ -11,21 +6,22 @@ hitung_kartu([],0).
 hitung_kartu([_|Tail], N) :- hitung_kartu(Tail, NewN),
                                  N is NewN+1.
 
-uni(Indeks_kartu) :-  giliran([Player|_]),
-                        player_hand(Player, Cards),
-                        hitung_kartu(Cards, 2),
-                        !,
-                        (
-                            mainkanKartu(Indeks_kartu) ->
-                                format('~w menyerukan UNI! ~n',[Player]),
-                                status_uni(ListLama),
-                                append_list(ListLama, Player, ListBaru),
-                                retractall(status_uni(_)),
-                                assertz(status_uni(ListBaru))
-                            ;
-                                true
-                        ).
-   
+uni(Indeks_kartu) :- giliran([Player|_]),
+                    player_hand(Player, Cards),
+                    hitung_kartu(Cards, 2),
+                    (   
+                        mainkanKartu(Indeks_kartu) ->
+                            format('~w menyerukan UNI! ~n',[Player]),
+                            status_uni(ListLama),
+                            append_list(ListLama, Player, ListBaru),
+                            retractall(status_uni(_)),
+                            assertz(status_uni(ListBaru))
+                        ;                            
+
+                        true
+
+                    ),!.
+>>>>>>> a4edf74 (fix: fix validation logic)
 
 uni(_) :- giliran([Player|_]),
                     player_hand(Player, Cards),
