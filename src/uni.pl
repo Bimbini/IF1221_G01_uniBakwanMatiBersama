@@ -1,9 +1,4 @@
 
-%:- dynamic(status_uni/1). 
-%:- dynamic(player_hand/2).
-%:- dynamic(giliran/1).
-%:- dynamic(deck/1).
-
 /*list yang udh teriak uni*/
 status_uni([]). 
 
@@ -14,20 +9,26 @@ hitung_kartu([_|Tail], N) :- hitung_kartu(Tail, NewN),
 uni(Indeks_kartu) :- giliran([Player|_]),
                     player_hand(Player, Cards),
                     hitung_kartu(Cards, 2),
-                    mainkanKartu(Indeks_kartu),!,
-                    format('~w menyerukan UNI! ~n',[Player]),
-                    status_uni(ListLama),
-                    append_list(ListLama, Player, ListBaru),
-                    retractall(status_uni(_)),
-                    assertz(status_uni(ListBaru)),
-                    currentPlayer.
+                    (   
+                        mainkanKartu(Indeks_kartu) ->
+                            format('~w menyerukan UNI! ~n',[Player]),
+                            status_uni(ListLama),
+                            append_list(ListLama, Player, ListBaru),
+                            retractall(status_uni(_)),
+                            assertz(status_uni(ListBaru))
+                        ;                            
+
+                        true
+
+                    ),!.
+>>>>>>> a4edf74 (fix: fix validation logic)
 
 uni(_) :- giliran([Player|_]),
                     player_hand(Player, Cards),
                     \+hitung_kartu(Cards, 2),
                     format('Perintah UNI gagal! ~w mendapat 1 kartu penalti. ~n', [Player]),
                     ambilKartuPenalti(Player,Cards),
-                    currentPlayer.
+                    pindah_giliran.
 
 ambilKartuPenalti(Player, Cards):- deck(DeckAwal),
                                     takeNrandom(1, DeckAwal, [Kartu], DeckBaru),
@@ -46,13 +47,13 @@ ambilNKartuPenalti(Player, N) :- N >0,
 
 
 hapusStatusUNI(Player) :- status_uni(List),
-                          delete_Player(Player, List, NewList),
+                          delete_Elmt(Player, List, NewList),
                           retractall(status_uni(_)),
                           assertz(status_uni(NewList)).
 
-delete_Player(_, [], []).
-delete_Player(Player, [Player|Tail], Tail) :-  !.
-delete_Player(Player, [Head|Tail], [Head|NewTail]) :- delete_Player(Player, Tail, NewTail).
+delete_Elmt(_, [], []).
+delete_Elmt(Elmt, [Elmt|Tail], Tail) :-  !.
+delete_Elmt(Elmt, [Head|Tail], [Head|NewTail]) :- delete_Elmt(Elmt, Tail, NewTail).
 
 
 
