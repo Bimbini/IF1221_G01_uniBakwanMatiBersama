@@ -14,13 +14,19 @@ notAngka(kartu(_, draw_two)).
 discardPile :-
     deck(DeckBefore),
     takeDiscardPile(DeckBefore, FirstCard, Rest),
+
     updateDeck(Rest),
 
-    retractall(last_played(_, _)),
-    asserta(last_played(start, FirstCard)),
+    retractall(discard_top(_)),
+    assertz(discard_top(FirstCard)),
 
-    FirstCard = kartu(X, Y),
-    write('Kartu discard top: '), write(X), write('-'), write(Y), write('.'), nl, nl.
+    FirstCard = kartu(W,_),
+
+    retractall(current_color(_)),
+    assertz(current_color(W)),
+
+    write('Kartu discard top: '),
+    writeCard(FirstCard).
 
 % Fungsi Helper, akan mengambil kartu kembali 
 % jika kartu yang diambil bukan kartu angka
