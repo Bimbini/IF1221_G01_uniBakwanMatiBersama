@@ -21,9 +21,9 @@ Program ini merupakan permainan kartu yang bernama Uni yang dibuat dalam GNU Pro
 ## Struktur Repository
 ```text
 IF1221_G01_uniBakwanMatiBersama
-├── docs (milestones and laporan stored here)
-├── src (all source code stored here)
-└── README.md (info about the project)
+├── docs        (milestones and laporan stored here)
+├── src         (all source code stored here)
+└── README.md   (info about the project)
 ```
 
 ## Cara Menjalankan Program

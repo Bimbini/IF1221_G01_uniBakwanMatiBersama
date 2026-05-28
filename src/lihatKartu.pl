@@ -23,6 +23,4 @@ tunjukan([Head|Tail], Nomor, N) :- Nomor =< N,
 /*Deklarasi Rules*/
 writeCard(kartu(Warna, Jenis)) :- write(Warna),
                                   write('-'),
-                                  write(Jenis), nl.
-                                    
- 
+                                  write(Jenis), write('.'), nl, nl.
