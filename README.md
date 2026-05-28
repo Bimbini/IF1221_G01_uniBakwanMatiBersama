@@ -27,7 +27,7 @@ IF1221_G01_uniBakwanMatiBersama
 ```
 
 ## Cara Menjalankan Program
-Untuk menjalankan program, clone repository ini dengan terminal
+Untuk menjalankan program, clone repository ini di terminal
 ```bash
 git clone https://github.com/Bimbini/IF1221_G01_uniBakwanMatiBersama.git
 ```
@@ -36,10 +36,12 @@ Lalu gunakan GNU Prolog untuk run, dengan change directory ke file src lalu comp
 ['main.pl'].
 ```
 
-## Daftar Fitur 
+## Daftar Command
+Command untuk memulai game:
 ```prolog
 startGame. %to start the game
 ```
+Command dalam permainan:
 ```prolog
 mainkanKartu(NomorUrutKartuDiTangan). %to play a card in your hand
 ```
