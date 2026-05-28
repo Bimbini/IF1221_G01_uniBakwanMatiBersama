@@ -1,10 +1,11 @@
-
+/*
 :- dynamic(last_played/2).
 :- dynamic(player_hand/2).
 :- dynamic(urutan_pemain/1).
 :- dynamic(current_player/1).
 :- dynamic(discard_top/1).
 :- dynamic(current_color/1).
+*/
 
 urutan_pemain([pemain1, pemain2]).
 current_player(pemain1).
