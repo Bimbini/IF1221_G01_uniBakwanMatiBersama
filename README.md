@@ -3,7 +3,7 @@
 ## Daftar Isi
 [Anggota Kelompok](#angota-kelompok) <br>
 [Deskripsi Proyek](#deskripsi-proyek) <br>
-[Struktur Repository] (#struktur-repository) <br>
+[Struktur Repository](#struktur-repository) <br>
 [Cara Menjalankan Program](#cara-menjalankan-program) <br>
 [Daftar Fitur](#daftar-fitur)
 
@@ -28,7 +28,7 @@ IF1221_G01_uniBakwanMatiBersama
 
 ## Cara Menjalankan Program
 Untuk menjalankan program, clone repository ini dengan terminal
-```
+```bash
 git clone https://github.com/Bimbini/IF1221_G01_uniBakwanMatiBersama.git
 ```
 Lalu gunakan GNU Prolog untuk run, dengan change directory ke file src lalu compile dengan
@@ -37,36 +37,36 @@ Lalu gunakan GNU Prolog untuk run, dengan change directory ke file src lalu comp
 ```
 
 ## Daftar Fitur 
-```
+```prolog
 startGame. %to start the game
 ```
-```
+```prolog
 mainkanKartu(NomorUrutKartuDiTangan). %to play a card in your hand
 ```
-```
+```prolog
 ambilKartu. %to take a card from the discard pile
 ```
-```
+```prolog
 tantang. %to challenge a draw four card
 ```
-```
+```prolog
 uni(NomorUrutKartuDiTangan). %to play then declare you have one card left
 ```
-```
+```prolog
 tangkap(NamaPemain). %to catch a player that has one card left but hasn't declared uni 
 ```
-```
+```prolog
 lihatCommand. %to look at available commands
 ```
-```
+```prolog
 lihatKartu. %to look at all the cards in your hand
 ```
-```
+```prolog
 cekInfo. %to check the current info of the game
 ```
-```
+```prolog
 saveGame. %to save the game
 ```
-```
+```prolog
 loadGame. %to load a game that was saved
 ```
