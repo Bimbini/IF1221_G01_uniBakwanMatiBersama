@@ -45,7 +45,12 @@ perPlayer(Name, Total) :-
     write(' = '), write(Total), write(' poin'), nl.
 
 % Facts buat Point per Kartu
-% Normal number cards are worth their number
+% Number 0 cards are worth 1 point
+pointKartu(kartu(X, 1), 1) :-
+    warna(X),
+    angka(0), !.
+
+% Normal number cards (1-9) are worth their number
 pointKartu(kartu(X, Number), Number) :-
     warna(X),
     angka(Number), !.

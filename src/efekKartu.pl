@@ -1,8 +1,9 @@
+/*
 :- include('giliran.pl').
 :- include('ambilKartu.pl').
 :- dynamic(arah/1).
 :- (arah(_) -> true ; assertz(arah(clockwise))).
-
+*/
 
 % Kartu angka no effect
 efek_kartu(_,J) :-
