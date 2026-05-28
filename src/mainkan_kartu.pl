@@ -57,10 +57,11 @@ buang_kartu(Pemain, kartu(W,J)) :-
         retract(current_color(_)),
         assertz(current_color(W)) ),
 
-    (length(NewHand, 0)-> 
-        format('HORE! ~w menang!~n', [Pemain])
-        ; write('Kartu berhasil dibuang.'), nl
-    ).
+    write('Kartu berhasil dibuang.'), nl,
+    urutan_pemain(ListUrutan),
+    checkPemenang(Pemain,ListUrutan).
+
+    
 
 remove_first(X, [X|T], T).
 
