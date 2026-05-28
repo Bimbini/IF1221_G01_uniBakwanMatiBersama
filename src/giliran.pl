@@ -10,13 +10,13 @@ add_tail([H|T], X, [H|L]) :- add_tail(T, X, L).
 baru list update the next person di paling depan list */
 currentPlayer :-
     giliran([H | _]),
-    format('Giliran ~w.~n~n', [H]),
+    format('Giliran ~w.~n', [H]),
     arah(clockwise), !,
     rotate_kiri.
 
 currentPlayer :-
     giliran([H | _]),
-    format('Giliran ~w.~n~n', [H]),
+    format('Giliran ~w.~n', [H]),
     rotate_kanan.
 
 rotate_kiri :-

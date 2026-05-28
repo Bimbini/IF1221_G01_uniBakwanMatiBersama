@@ -9,14 +9,14 @@
 :- dynamic(status_uni/1).
 :- dynamic(deck/1).
 :- dynamic(arah/1).
-:- (arah(_) -> true ; assertz(arah(clockwise))).
+:- initialization((arah(_) -> true ; assertz(arah(clockwise)))).
 
 /* FILES */
-:-include('start_game.pl').
-:-include('end_game.pl').
 :-include('ambilKartu.pl').
 :-include('cekInfo.pl').
 :-include('discardpile.pl').
+:-include('efekKartu.pl').
+:-include('end_game.pl').
 :-include('facts.pl').
 :-include('giliran.pl').
 :-include('lihatCommand.pl').
@@ -25,6 +25,7 @@
 :-include('random7cards.pl').
 :-include('randomize.pl').
 :-include('rules.pl').
+:-include('start_game.pl').
 :-include('tantang.pl').
 :-include('uni.pl').
 :-include('tangkap.pl').
