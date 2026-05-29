@@ -15,6 +15,7 @@ checkPemenang(Name, ListUrutan) :- % list kartu udah habis
 /* IF GAME ENDS */
 % main function
 endGame(Pemenang) :-
+    retractall(has_started),
     fixed_urutanplayer(ListUrutan), % get the fixed list of players
 
     write('Permainan selesai! '), write(Pemenang),
