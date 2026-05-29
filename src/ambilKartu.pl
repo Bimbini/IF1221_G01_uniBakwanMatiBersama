@@ -20,7 +20,9 @@ ambilNKartu(N, Player) :-
     N > 0,
     deck(DeckBefore),                                   % fix: tambah koma lupa lol
     takeNrandom(1, DeckBefore, [Card], DeckAfter),
-    assertz(player_hand(Player, Card)),                 % FIX: player_hand, bukan hand
+    retract(player_hand(Player,OldHand)),
+    NewHand = [Card | OldHand],
+    assertz(player_hand(Player, NewHand)),                 % FIX: player_hand, bukan hand
     updateDeck(DeckAfter),
     format('~w mendapatkan kartu: ~w~n', [Player, Card]), % FIX: ~n bukan ~-n
     N1 is N - 1,
