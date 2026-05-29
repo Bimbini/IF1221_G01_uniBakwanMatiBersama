@@ -5,6 +5,7 @@
 :- dynamic(current_player/1).
 :- dynamic(current_color/1).
 :- dynamic(giliran/1).
+:- dynamic(fixed_urutanplayer/1).
 :- dynamic(status_uni/1).
 :- dynamic(deck/1).
 :- dynamic(arah/1).

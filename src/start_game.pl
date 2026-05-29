@@ -10,6 +10,7 @@ startGame :-
     amountOfPlayers(Jumlah), nl, % check amount
     nameOfPlayers([], Jumlah, 1, AllNames), nl, % masukin nama, nama final di AllNames
     urutanPemain(AllNames, Jumlah, ListUrutan),  % buat random order
+    assertz(fixed_urutanplayer(ListUrutan)), % put in dynamic list to be used in another file, list ini gak bakal ganti (unlike giliran)
 
     write('Setiap pemain mendapatkan 7 kartu acak.'), nl, nl,
     all_cards(All),

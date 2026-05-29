@@ -7,7 +7,7 @@ cekInfo :-
     last_played(_, kartu(X, Y)),
     write('Kartu discard top: '), write(X), write('-'), write(Y), write('.'), nl, nl,
 
-    giliran(ListGiliran),
+    fixed_urutanplayer(ListGiliran),
     count_list(ListGiliran, JumlahPemain),
     write('Urutan pemain: '), printUrutan(ListGiliran, JumlahPemain), nl, nl,
     

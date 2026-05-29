@@ -52,7 +52,7 @@ buang_kartu(Pemain, kartu(W,J)) :-
     ),
 
     write('Kartu berhasil dibuang.'), nl,
-    ( player_hand(Pemain, []) -> endGame(Pemain, giliran) ; efek_kartu(_, J) ).
+    ( player_hand(Pemain, []) -> endGame(Pemain) ; efek_kartu(_, J) ).
 
 remove_first(X, [X|T], T).
 remove_first(X, [H|T], [H|R]) :-

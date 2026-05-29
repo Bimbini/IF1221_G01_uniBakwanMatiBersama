@@ -14,11 +14,13 @@ checkPemenang(Name, ListUrutan) :- % list kartu udah habis
 
 /* IF GAME ENDS */
 % main function
-endGame(Pemenang, ListUrutan) :-
+endGame(Pemenang) :-
+    fixed_urutanplayer(ListUrutan), % get the fixed list of players
+
     write('Permainan selesai! '), write(Pemenang),
     write(' menghabiskan semua kartunya!'), nl, nl,
 
-    write('Berikut perhitungan poin sisa kartu.'), nl,
+    write('Berikut perhitungan poin sisa kartu:'), nl,
     scoreboard(ListUrutan, ListScore), nl,
 
     write('Urutan pemenang:'), nl,
@@ -48,7 +50,7 @@ perPlayer(Name, Total) :-
 
 % Facts buat Point per Kartu
 % Number 0 cards are worth 1 point
-pointKartu(kartu(X, 1), 1) :-
+pointKartu(kartu(X, 0), 1) :-
     warna(X),
     angka(0), !.
 
