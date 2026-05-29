@@ -19,10 +19,10 @@ can_throw(kartu(_,J), kartu(_,J), _).
 % wild card bisa dipake kpn aja
 can_throw(kartu(hitam,wild), _, _).
 
-% wild card four cuman boleh dipake kalo pemain gapunya kartu lain yg cocok 
-can_throw(kartu(hitam, wild_draw_four), kartu(W_kartu_di_meja, J_kartu_di_meja), Handlist) :- 
-         \+ member(kartu(W_kartu_di_meja, _), Handlist).
-        \+ member(kartu(_, J_kartu_di_meja), Handlist).
+% wild card four gaboleh ditumpuk dua kali
+can_throw(kartu(hitam, wild_draw_four), kartu(_, wild_draw_four), _) :- !, fail.
+
+can_throw(kartu(hitam,wild_draw_four), _, _).
 
 
 
