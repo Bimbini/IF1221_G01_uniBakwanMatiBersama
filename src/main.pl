@@ -9,6 +9,7 @@
 :- dynamic(status_uni/1).
 :- dynamic(deck/1).
 :- dynamic(arah/1).
+:- dynamic(has_started/0).
 :- initialization((arah(_) -> true ; assertz(arah(clockwise)))).
 
 /* FILES */
@@ -29,3 +30,4 @@
 :-include('tantang.pl').
 :-include('uni.pl').
 :-include('tangkap.pl').
+:-include('save.pl').

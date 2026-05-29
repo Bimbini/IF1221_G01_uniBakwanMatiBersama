@@ -7,6 +7,7 @@
 /* START THE GAME */
 % main function
 startGame :-
+    assertz(has_started),
     amountOfPlayers(Jumlah), nl, % check amount
     nameOfPlayers([], Jumlah, 1, AllNames), nl, % masukin nama, nama final di AllNames
     urutanPemain(AllNames, Jumlah, ListUrutan),  % buat random order
