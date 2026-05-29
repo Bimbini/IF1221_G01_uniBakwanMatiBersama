@@ -20,6 +20,8 @@ can_throw(kartu(_,J), kartu(_,J), _).
 can_throw(kartu(hitam,wild), _, _).
 
 % wild card four gaboleh ditumpuk dua kali
+can_throw(kartu(_,draw_two), kartu(_,draw_two), _) :- !, fail.
+
 can_throw(kartu(hitam, wild_draw_four), kartu(_, wild_draw_four), _) :- !, fail.
 
 can_throw(kartu(hitam,wild_draw_four), _, _).
