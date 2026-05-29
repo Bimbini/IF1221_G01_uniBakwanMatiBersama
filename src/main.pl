@@ -3,7 +3,6 @@
 :- dynamic(player_hand/2).
 :- dynamic(urutan_player/1).
 :- dynamic(current_player/1).
-:- dynamic(discard_top/1).
 :- dynamic(current_color/1).
 :- dynamic(giliran/1).
 :- dynamic(status_uni/1).

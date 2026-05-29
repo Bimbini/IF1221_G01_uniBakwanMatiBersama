@@ -18,9 +18,12 @@ startGame :-
 
     discardPile, % show first card
 
-    updateList(ListUrutan),
-    currentPlayer.
+    write('Giliran '), printHead(ListUrutan), write('.'), nl,
+    updateList(ListUrutan).
 
+% Print head to start giliran
+printHead([Head | _]) :-
+    write(Head).
 
 % Facts Digits
 digit(0).

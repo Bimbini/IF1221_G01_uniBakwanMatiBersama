@@ -4,11 +4,13 @@
 :- include('random7cards.pl').
 */
 
-/* Call function everytime mainkan kartu to check if kartu habis */
+% DELETED i moved it to mainkan aja biar gampang
+/* Call function everytime mainkan kartu to check if kartu habis 
 checkPemenang(Name, ListUrutan) :- % list kartu udah habis
     player_hand(Name, ListKartu),
     % if kartu habis, call endGame, else lanjut gamenya
     (ListKartu = [] -> endGame(Name, ListUrutan) ; true).
+*/
 
 /* IF GAME ENDS */
 % main function

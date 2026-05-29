@@ -29,7 +29,7 @@ printInfo([A], P, 1) :-
     count_list(ListKartu, JmlKartu),
 
     write('Nama Pemain '), write(P), write(': '), write(A), nl,
-    write('Jumlah kartu : '), write(JmlKartu), nl, nl.
+    write('Jumlah kartu : '), write(JmlKartu), nl.
 
 printInfo([A|B], P, Total) :-
     Total > 1,

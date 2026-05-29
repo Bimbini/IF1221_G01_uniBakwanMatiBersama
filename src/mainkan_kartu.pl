@@ -3,7 +3,6 @@
 :- dynamic(player_hand/2).
 :- dynamic(urutan_pemain/1).
 :- dynamic(current_player/1).
-:- dynamic(discard_top/1).
 :- dynamic(current_color/1).
 */
 
@@ -12,19 +11,18 @@ ambilDariHand(1, [H|_], H).
 ambilDariHand(N, [_|T], Kartu) :- N>1,
                                 N1 is N-1,
                                 ambilDariHand(N1,T,Kartu).
-   
 
 mainkanKartu(Urutan) :-
-    current_player(PemainSaatIni),
+    giliran([PemainSaatIni | _]),
     player_hand(PemainSaatIni, Handlist),
 
     ( ambilDariHand(Urutan, Handlist, kartu(W,J))->
-        discard_top(kartu(_, J_kartu_di_meja)),
-        current_color(W_kartu_di_meja),
+        %discard_top(kartu(_, J_kartu_di_meja)),
+        last_played(_, kartu(W_kartu_di_meja, J_kartu_di_meja)),
+        %current_color(W_kartu_di_meja),
         (can_throw(kartu(W, J),kartu(W_kartu_di_meja, J_kartu_di_meja),Handlist)->
             buang_kartu(PemainSaatIni, kartu(W,J)),
-            handle_effect(J) ;
-
+            ;
             write('Gagal, kartu tidak cocok.'), nl,
             fail );
 
@@ -39,8 +37,8 @@ buang_kartu(Pemain, kartu(W,J)) :-
     remove_first(kartu(W,J), OldHand, NewHand),
     assertz(player_hand(Pemain, NewHand)),
 
-    retract(discard_top(_)),
-    assertz(discard_top(kartu(W,J))),
+    %retract(discard_top(_)),
+    %assertz(discard_top(kartu(W,J))),
 
     retractall(last_played(_, _)),
     assertz(last_played(Pemain, kartu(W, J))),
@@ -49,17 +47,16 @@ buang_kartu(Pemain, kartu(W,J)) :-
         write('Kartu Hitam! Pilih warna baru: '),
         read(WarnaBaru),
 
-        retract(current_color(_)),
+        retractall(current_color(_)),
         assertz(current_color(WarnaBaru)),
 
         format('Warna sekarang: ~w~n', [WarnaBaru])  ;
 
-        retract(current_color(_)),
+        retractall(current_color(_)),
         assertz(current_color(W)) ),
 
     write('Kartu berhasil dibuang.'), nl,
-    urutan_pemain(ListUrutan),
-    checkPemenang(Pemain,ListUrutan).
+    (player_hand(Pemain, []) -> endGame(Pemain, giliran) ; efek_kartu(_, J)).
 
     
 
