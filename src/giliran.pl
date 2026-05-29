@@ -6,18 +6,18 @@ giliran([]).
 add_tail([], X, [X]).
 add_tail([H|T], X, [H|L]) :- add_tail(T, X, L).
 
-/* when called keluarin dulu sekarang giliran siapa 
-baru list update the next person di paling depan list */
+/* when called list diupdate baru tunjukin sekarang giliran siapa */
 currentPlayer :-
-    giliran([H | _]),
-    format('Giliran ~w.~n', [H]),
     arah(clockwise), !,
-    rotate_kiri.
+    rotate_kiri,
+    giliran([NextPlayer | _]),
+    format('Giliran ~w.~n', [NextPlayer]).
 
 currentPlayer :-
-    giliran([H | _]),
-    format('Giliran ~w.~n', [H]),
-    rotate_kanan.
+    arah(counter_clockwise), !,
+    rotate_kanan,
+    giliran([NextPlayer | _]),
+    format('Giliran ~w.~n', [NextPlayer]).
 
 rotate_kiri :-
     giliran([H | T]),
@@ -41,3 +41,17 @@ updateList(NewGiliran) :-
 setPlayers(Players) :-
     retractall(giliran(_)),
     assertz(giliran(Players)).
+
+%clockwise to counterclockwise
+balik_arah :-
+    arah(clockwise), !,
+    retract(arah(clockwise)),
+    assertz(arah(counter_clockwise)),
+    write('[REVERSE] Arah permainan berubah menjadi berlawanan arah jarum jam!'), nl.
+
+%counterclockwise to clockwise
+balik_arah :-
+    arah(counter_clockwise), !,
+    retract(arah(counter_clockwise)),
+    assertz(arah(clockwise)),
+    write('[REVERSE] Arah permainan berubah menjadi searah jarum jam!'), nl.
