@@ -41,8 +41,7 @@ buang_kartu(Pemain, kartu(W,J)) :-
     write(Pemain), write(' memainkan kartu '), write(W), write('-'), write(J), write('.'), nl, nl,
 
     ( W == hitam ->
-        write('Kartu Hitam!'), nl, write('Pilih warna baru: '),
-        read(WarnaBaru),
+        write('Kartu Hitam!'), nl, inputWarna(WarnaBaru),
 
         retractall(current_color(_)),
         assertz(current_color(WarnaBaru)),
@@ -58,3 +57,17 @@ buang_kartu(Pemain, kartu(W,J)) :-
 remove_first(X, [X|T], T).
 remove_first(X, [H|T], [H|R]) :-
     remove_first(X, T, R).
+
+validasi_warna(merah).
+validasi_warna(kuning).
+validasi_warna(hijau).
+validasi_warna(biru).
+
+inputWarna(WarnaBaru) :- write('Pilih warna baru: '),
+                        read(Warna),
+                        (validasi_warna(Warna)->
+                            WarnaBaru = Warna
+                        ;
+                            write('Warna tidak valid! Harus merah/kuning/hijau/biru.'),nl,
+                            inputWarna(WarnaBaru)
+                        ).
