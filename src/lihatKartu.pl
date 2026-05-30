@@ -2,7 +2,8 @@
 %:- dynamic(giliran/1).
 
 /*Deklarasi Rules*/
-lihatKartu :- write('Berikut kartu yang anda miliki'), nl, 
+lihatKartu :- has_started,
+              write('Berikut kartu yang anda miliki'), nl, 
               giliran([Player|_]),
               player_hand(Player,Cards),
               count(Cards,N),

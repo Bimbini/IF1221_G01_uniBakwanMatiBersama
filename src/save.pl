@@ -1,7 +1,6 @@
 
 saveGame :- has_started,
-            \+last_played(_, kartu(hitam, wild_draw_four)),
-            \+last_played(_, kartu(_, draw_two)),
+            draw(0),
             write('Masukan nama file penyimpanan: '),
             read(X),
             open(X, write, S),
@@ -11,21 +10,21 @@ saveGame :- has_started,
             format(S,'giliran:~q',[Head]),nl(S),
             last_played(_, kartu(W_kartu_di_meja, J_kartu_di_meja)),
             write(S,'discard_top:'),writeCardtoFile(S,kartu(W_kartu_di_meja, J_kartu_di_meja)),write(S,'.'),nl(S),
-            format(S,'warna_aktif:~w.',[W_kartu_di_meja]),nl(S),
+            current_color(WarnaAktif),
+            format(S,'warna_aktif:~w.',[WarnaAktif]),nl(S),
             arah(Arah),
             format(S,'arah_permainan:~w.',[Arah]),nl(S),
             status_uni(ListUni),
             format(S,'status_UNI:~q.',[ListUni]),nl(S),
             cetakKartuNPemain(S,ListGiliran),
-            close(S).
+            close(S),
+            retractall(has_started),
+            write('Save berhasil! Permainan diberhentikan.'), resetGame.
 
 saveGame :- has_started,
+            draw(N),N>0,!,
             last_played(_, kartu(hitam, wild_draw_four)),
-            write('Save gagal! Selesaikan efek kartu terlebih dahulu.'), nl.
-
-saveGame :- has_started,
-            last_played(_, kartu(_, draw_two)),
-            write('Save gagal! Selesaikan efek kartu terlebih dahulu.'), nl.            
+            write('Save gagal! Selesaikan efek kartu terlebih dahulu.'), nl.           
 
 saveGame :- \+has_started,
             write('Permainan belum dimulai. Gunakan startGame terlebih dahulu.'),nl.
