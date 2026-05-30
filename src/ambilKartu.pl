@@ -4,15 +4,24 @@
 :- include('efekKartu.pl').
 */
 
-ambilKartu :-
+:- dynamic(draw/1).
+:- initialization((draw(_) -> true ; assertz(draw(0)))).
+
+ambilKartu :-                  %ambilKartu kalo draw2/4
     giliran([Player | _]),
-    jumlahKartuDiambil(_, N),
+    draw(N),
+    N>0, !, 
+    format('~w harus mengambil ~w kartu!~n', [Player, N]),
     ambilNKartu(N, Player),
-    currentPlayer.       
+    retractall(draw(_)),        %reset draw jadi 0 lagi
+    assertz(draw(0)),
+    currentPlayer.              %next
 
 
-jumlahKartuDiambil(_, 1).     % normal draw selalu 1 kartu. draw_two & wild_draw_four urusannya efek_kartu
-
+ambilKartu :-                   %ambilKartu normal
+    giliran([Player | _]),
+    ambilNKartu(1, Player),
+    currentPlayer.
 
 % Ambil N kartu acak dari deck, maskin ke tangan player.
 ambilNKartu(0, _) :- !.
@@ -27,4 +36,5 @@ ambilNKartu(N, Player) :-
 
     updateDeck(DeckAfter),
     format('~w mendapatkan kartu: ~w~n', [Player, Card]), 
+    N1 is N-1,
     ambilNKartu(N1, Player).

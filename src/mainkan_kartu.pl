@@ -4,6 +4,7 @@
 :- dynamic(urutan_pemain/1).
 :- dynamic(current_player/1).
 :- dynamic(current_color/1).
+:- include('ambilKartu.pl').            %buat dynamic fact draw 2/4 atau tidak
 */
 
 
@@ -12,6 +13,13 @@ ambilDariHand(N, [_|T], Kartu) :-
     N > 1,
     N1 is N - 1,
     ambilDariHand(N1, T, Kartu).
+
+mainkanKartu(_) :-
+    giliran([PemainSaatIni | _]),
+    draw(N),
+    N>0, !,
+    format('~w harus mengambil sebanyak ~w kartu! Silahkan gunakan command "ambilKartu".~n', [PemainSaatIni, N]),
+    fail.
 
 mainkanKartu(Urutan) :-
     giliran([PemainSaatIni | _]),
