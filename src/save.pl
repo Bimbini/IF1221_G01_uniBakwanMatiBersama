@@ -1,5 +1,5 @@
 saveGame :- has_started,
-            draw(0),
+            draw(0),!,
             write('Masukan nama file penyimpanan: '),
             read(X),
             open(X, write, S),
