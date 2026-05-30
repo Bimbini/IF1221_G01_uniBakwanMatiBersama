@@ -27,7 +27,7 @@ uni(_) :- giliran([Player|_]),
                     \+hitung_kartu(Cards, 2),
                     format('Perintah UNI gagal! ~w mendapat 1 kartu penalti. ~n', [Player]),
                     ambilKartuPenalti(Player,Cards),
-                    pindah_giliran.
+                    currentPlayer.
 
 ambilKartuPenalti(Player, Cards):- deck(DeckAwal),
                                     takeNrandom(1, DeckAwal, [Kartu], DeckBaru),
