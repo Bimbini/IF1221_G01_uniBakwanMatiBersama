@@ -3,10 +3,11 @@ lihatCommand :- has_started,
                 write('Aksi utama yang tersedia: '), nl,
                 write('1. ambilKartu'), nl,
                 N is 2,
-                command_tantang(N,N1),nl,
+                command_tantang(N,N1),
                 command_mainkanKartu(N1, N2),
                 command_tangkap(N2,N3),
                 command_uni(N3,N4),
+                command_godsHand(N4,N5),nl,
                 
                 write('Aksi pendukung yang tersedia: '), nl,
                 write('1. lihatCommand'), nl, write('2. lihatKartu'),nl, write('3. cekInfo'), nl.
@@ -21,22 +22,24 @@ command_tantang(NomorAwal, NomorSetelah) :- last_played(_, kartu(hitam, wild_dra
 command_tantang(NomorAwal, NomorAwal).
                                           
 /*deklarasi rules*/
-command_mainkanKartu(NomorAwal, NomorSetelah) :- \+ last_played(_, kartu(hitam, wild_draw_four)), \+ last_played(_, kartu(_, draw_two)),!,
+command_mainkanKartu(NomorAwal, NomorSetelah) :- draw(0),!,
                                                 write(NomorAwal),write('. mainkanKartu(NomorUrutKartuDiTangan)'), nl,
                                                NomorSetelah is NomorAwal+1.
 /*deklarasi fakta*/
 command_mainkanKartu(NomorAwal,NomorAwal).
                                              
 /*deklarasi rules*/
-command_tangkap(NomorAwal, NomorSetelah) :- \+ last_played(_, kartu(hitam, wild_draw_four)), \+ last_played(_, kartu(_, draw_two)),!,
+command_tangkap(NomorAwal, NomorSetelah) :- draw(0),!,
                                                 write(NomorAwal),write('. tangkap(NamaPemain)'), nl,
                                                NomorSetelah is NomorAwal+1.
 /*deklarasi fakta*/
 command_tangkap(NomorAwal, NomorAwal).
 
 /*deklarasi rules*/
-command_uni(NomorAwal, NomorSetelah) :- \+ last_played(_, kartu(hitam, wild_draw_four)), \+ last_played(_, kartu(_, draw_two)),!,
-                                                write(NomorAwal),write('. uni(NomorUrutKartuDiTangan)'), nl,
-                                               NomorSetelah is NomorAwal+1.
+command_uni(NomorAwal, NomorSetelah) :- draw(0),!,
+                                        write(NomorAwal),write('. uni(NomorUrutKartuDiTangan)'), nl,
+                                        NomorSetelah is NomorAwal+1.
 /*deklarasi fakta*/
 command_uni(NomorAwal, NomorAwal).
+
+command_godsHand(NomorAwal, NomorSetelah) :- draw(0), write(NomorAwal), write('. godsHand'), nl, NomorSetelah is NomorAwal+1.
