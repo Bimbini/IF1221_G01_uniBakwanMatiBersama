@@ -1,6 +1,7 @@
 %:- dynamic(last_played/2).
 /*deklarasi rules*/
-lihatCommand :- write('Aksi utama yang tersedia: '), nl,
+lihatCommand :- has_started,
+                write('Aksi utama yang tersedia: '), nl,
                 write('1. ambilKartu'), nl,
                 N is 2,
                 command_tantang(N,N1),nl,
