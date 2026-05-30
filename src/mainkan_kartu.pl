@@ -26,7 +26,8 @@ mainkanKartu(Urutan) :-
     player_hand(PemainSaatIni, Handlist),
 
     ( ambilDariHand(Urutan, Handlist, kartu(W,J)) ->
-        last_played(_, kartu(W_kartu_di_meja, J_kartu_di_meja)),
+        last_played(_, kartu(_, J_kartu_di_meja)),
+        current_color(W_kartu_di_meja),
         ( can_throw(kartu(W, J), kartu(W_kartu_di_meja, J_kartu_di_meja), Handlist) ->
             buang_kartu(PemainSaatIni, kartu(W,J))
         ;

@@ -20,6 +20,7 @@ discardPile :-
     asserta(last_played(start, FirstCard)),
 
     FirstCard = kartu(X, Y),
+    assertz(current_color(X)),
     write('Kartu discard top: '), write(X), write('-'), write(Y), write('.'), nl, nl.
 
 
