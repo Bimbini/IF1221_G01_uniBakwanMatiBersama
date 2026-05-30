@@ -27,7 +27,7 @@ endGame(Pemenang) :-
     write('Urutan pemenang:'), nl,
     leaderboard(ListScore), nl, 
 
-    write('Selamat, '), write(Pemenang), write(' menjadi pemenang!'), nl.
+    write('Selamat, '), write(Pemenang), write(' menjadi pemenang!'), nl, resetGame.
 
 /* COUNT SCORE (SCOREBOARD) */
 scoreboard([], []). % kalau list player habis, stop
@@ -120,3 +120,19 @@ printListScore([[Name, Total] | Tail], Count) :-
     write(Name), write('('), write(Total), write(' poin)'), nl,
     Count1 is Count + 1,
     printListScore(Tail, Count1).
+
+resetGame :-
+    retractall(last_played(_, _)),
+    retractall(player_hand(_, _)),
+    retractall(urutan_player(_)),
+    retractall(current_player(_)),
+    retractall(current_color(_)),
+    retractall(giliran(_)),
+    retractall(fixed_urutanplayer(_)),
+    retractall(status_uni(_)),
+    retractall(deck(_)),
+    retractall(arah(_)),
+    retractall(has_started),
+    retractall(draw(_)),
+    assertz(arah(clockwise)),
+    assertz(draw(0)).

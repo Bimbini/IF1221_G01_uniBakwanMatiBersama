@@ -11,10 +11,10 @@ ambilKartu :-                  %ambilKartu kalo draw2/4
     giliran([Player | _]),
     draw(N),
     N>0, !, 
-    format('~w harus mengambil ~w kartu!~n', [Player, N]),
-    ambilNKartu(N, Player),
     retractall(draw(_)),        %reset draw jadi 0 lagi
     assertz(draw(0)),
+    format('~w harus mengambil ~w kartu!~n', [Player, N]),
+    ambilNKartu(N, Player),
     currentPlayer.              %next
 
 
