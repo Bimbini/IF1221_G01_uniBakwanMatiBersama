@@ -1,12 +1,3 @@
-/*
-:- include('random7cards.pl').
-:- include('giliran.pl').
-:- include('efekKartu.pl').
-*/
-
-:- dynamic(draw/1).
-:- initialization((draw(_) -> true ; assertz(draw(0)))).
-
 ambilKartu :-                  %ambilKartu kalo draw2/4
     giliran([Player | _]),
     draw(N),

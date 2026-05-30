@@ -1,4 +1,3 @@
-%:- dynamic(last_played/2).
 /*deklarasi rules*/
 lihatCommand :- has_started,
                 write('Aksi utama yang tersedia: '), nl,

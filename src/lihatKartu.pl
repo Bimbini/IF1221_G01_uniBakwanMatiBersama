@@ -1,6 +1,3 @@
-%:- dynamic(player_hand/2).
-%:- dynamic(giliran/1).
-
 /*Deklarasi Rules*/
 lihatKartu :- has_started,
               write('Berikut kartu yang anda miliki'), nl, 

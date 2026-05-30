@@ -1,6 +1,3 @@
-%:- dynamic(giliran/1).
-%:- dynamic(arah/1).
-
 giliran([]).
 
 add_tail([], X, [X]).

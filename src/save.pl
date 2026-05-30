@@ -1,4 +1,3 @@
-
 saveGame :- has_started,
             draw(0),
             write('Masukan nama file penyimpanan: '),
@@ -43,6 +42,3 @@ cetakKartu1Pemain(_,[]).
 cetakKartu1Pemain(S,[Card]) :- writeCardtoFile(S,Card).                                  
 cetakKartu1Pemain(S,[Head|Tail]) :-    writeCardtoFile(S,Head),write(S,','),
                                         cetakKartu1Pemain(S,Tail).
-                                    
-
-            

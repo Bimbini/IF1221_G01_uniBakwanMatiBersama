@@ -1,7 +1,4 @@
-%:- include('randomize.pl').
-%:- dynamic(player_hand/2). 
 /*hand itu kartu yang lagi dipegang pemain, argumennya (Nama, ListKartu)*/
-:- dynamic(deck/1).
 
 /*deklarasi fakta*/
 giveCards([],Deck, Deck).

@@ -1,12 +1,3 @@
-/*
-:- include('giliran.pl').
-:- include('ambilKartu.pl').                                %buat dynamic fact draw 2/4 atau tidak
-:- dynamic(arah/1).
-:- (arah(_) -> true ; assertz(arah(clockwise))).
-*/
-
-angka(J) :- integer(J), J>=0, J=<9.
-
 % Kartu angka no effect
 efek_kartu(_,J) :-
     angka(J), !,
@@ -16,7 +7,7 @@ efek_kartu(_,J) :-
 efek_kartu(_,skip) :- !,
     (arah(clockwise) -> rotate_kiri;rotate_kanan),
     giliran([Player | _]),                                  % ambil siapa yang kena skip
-    format('[SKIP] ~w diskip~n', [Player]),
+    format('[SKIP] ~w diskip~n', [Player]), nl,
     currentPlayer.                                          % next
 
 % REVERSE balik arah urutan

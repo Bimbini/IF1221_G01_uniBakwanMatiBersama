@@ -1,9 +1,3 @@
-/* FILES 
-:- include('randomize.pl').
-:- include('discardpile.pl').
-:- include('giliran.pl').
-*/
-
 /* START THE GAME */
 % main function
 startGame :-

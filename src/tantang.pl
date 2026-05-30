@@ -2,13 +2,12 @@
 
 %:- dynamic(last_played/2).
 %:- dynamic(player_hand/2).
-%:- dynamic(current_player/1).
 %:- dynamic(current_color/1).
 %:- dynamic(deck/1).
 
 tantang :-
     last_played(PrevPlayer, kartu(hitam, wild_draw_four)), !,
-    current_player(Penantang),
+    giliran([Penantang | _]),
 
     write('Tantangan dilakukan!'), nl,
     write('Memeriksa kartu '), write(PrevPlayer), write(' ...'), nl,
@@ -25,11 +24,13 @@ tantang :-
     ),
 
     retractall(last_played(_, _)),
+    retractall(draw(_)), % reset biar gak suruh ambil lagi
+    assertz(draw(0)),
     currentPlayer.
 
 
 tantang :- 
-    write('Gagal, tidak ada kartu Wild Draw Four yang bisa ditantang'), nl, fail.
+    write('Gagal, tidak ada kartu Wild Draw Four yang bisa ditantang.'), nl, fail.
 
 color_match([kartu(W, _)|_], W) :- W \== hitam, !.
 color_match([_|Tail], W) :- color_match(Tail, W).

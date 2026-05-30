@@ -1,17 +1,3 @@
-/* FILES 
-:- include('start_game.pl').
-:- include('facts.pl').
-:- include('random7cards.pl').
-*/
-
-% DELETED i moved it to mainkan aja biar gampang
-/* Call function everytime mainkan kartu to check if kartu habis 
-checkPemenang(Name, ListUrutan) :- % list kartu udah habis
-    player_hand(Name, ListKartu),
-    % if kartu habis, call endGame, else lanjut gamenya
-    (ListKartu = [] -> endGame(Name, ListUrutan) ; true).
-*/
-
 /* IF GAME ENDS */
 % main function
 endGame(Pemenang) :-
@@ -121,11 +107,10 @@ printListScore([[Name, Total] | Tail], Count) :-
     Count1 is Count + 1,
     printListScore(Tail, Count1).
 
+% When ending the game, reset all data to 0
 resetGame :-
     retractall(last_played(_, _)),
     retractall(player_hand(_, _)),
-    retractall(urutan_player(_)),
-    retractall(current_player(_)),
     retractall(current_color(_)),
     retractall(giliran(_)),
     retractall(fixed_urutanplayer(_)),

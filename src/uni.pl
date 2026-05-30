@@ -1,4 +1,3 @@
-
 /*list yang udh teriak uni*/
 status_uni([]). 
 

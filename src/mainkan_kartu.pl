@@ -1,13 +1,3 @@
-/*
-:- dynamic(last_played/2).
-:- dynamic(player_hand/2).
-:- dynamic(urutan_pemain/1).
-:- dynamic(current_player/1).
-:- dynamic(current_color/1).
-:- include('ambilKartu.pl').            %buat dynamic fact draw 2/4 atau tidak
-*/
-
-
 ambilDariHand(1, [H|_], H).
 ambilDariHand(N, [_|T], Kartu) :- 
     N > 1,
@@ -47,8 +37,11 @@ buang_kartu(Pemain, kartu(W,J)) :-
     retractall(last_played(_, _)),
     assertz(last_played(Pemain, kartu(W, J))),
 
+    % Print main apa baru tanya warna
+    write(Pemain), write(' memainkan kartu '), write(W), write('-'), write(J), write('.'), nl, nl,
+
     ( W == hitam ->
-        write('Kartu Hitam! Pilih warna baru: '),
+        write('Kartu Hitam!'), nl, write('Pilih warna baru: '),
         read(WarnaBaru),
 
         retractall(current_color(_)),
@@ -60,7 +53,6 @@ buang_kartu(Pemain, kartu(W,J)) :-
         assertz(current_color(W)) 
     ),
 
-    write('Kartu berhasil dibuang.'), nl,
     ( player_hand(Pemain, []) -> endGame(Pemain) ; efek_kartu(_, J) ).
 
 remove_first(X, [X|T], T).
