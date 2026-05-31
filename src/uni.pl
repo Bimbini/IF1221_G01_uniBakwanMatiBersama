@@ -10,15 +10,22 @@ uni(Indeks_kartu) :- giliran([Player|_]),
                     hitung_kartu(Cards, 2),
                     (  
                     ambilDariHand(Indeks_kartu, Cards,_)->
-                           format('~w menyerukan UNI! ~n',[Player]),
-                            mainkanKartu(Indeks_kartu),
+                        format('~w menyerukan UNI! ~n',[Player]),
+                        (mainkanKartu(Indeks_kartu) ->
                             status_uni(ListLama),
                             append_list(ListLama, Player, ListBaru),
                             retractall(status_uni(_)),
                             assertz(status_uni(ListBaru))
-                        ;                            
-                        write('Kartu tidak ada di hand.'),nl,
-                        fail
+                        ;
+                            format('Perintah UNI gagal! ~w mendapat 1 kartu penalti. ~n', [Player]),
+                            ambilKartuPenalti(Player,Cards),
+                            currentPlayer
+                        )
+                    ;   
+                        write('Kartu tidak ada di hand.'), nl,                         
+                        format('Perintah UNI gagal! ~w mendapat 1 kartu penalti. ~n', [Player]),
+                        ambilKartuPenalti(Player,Cards),
+                        currentPlayer
 
                     ),!.
 
