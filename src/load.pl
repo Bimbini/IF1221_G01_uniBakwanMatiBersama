@@ -45,8 +45,9 @@ bukaFile(LoadFile) :-
     format('Gagal: File ~w tidak ditemukan.~n', [LoadFile]),
     fail.
 
-readInfo(S, _) :- 
-    at_end_of_stream(S), !.
+readInfo(S, Info) :- 
+    at_end_of_stream(S), !,
+    prosesInfo(Info).
 readInfo(S, Info) :- 
     \+at_end_of_stream(S), !,
     prosesInfo(Info),
