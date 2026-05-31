@@ -42,4 +42,12 @@ command_uni(NomorAwal, NomorSetelah) :- draw(0),!,
 /*deklarasi fakta*/
 command_uni(NomorAwal, NomorAwal).
 
-command_godsHand(NomorAwal, NomorSetelah) :- draw(0), write(NomorAwal), write('. godsHand'), nl, NomorSetelah is NomorAwal+1.
+/*deklarasi rules*/
+command_godsHand(NomorAwal, NomorSetelah) :- draw(0), 
+                                            fixed_urutanplayer(CheckList),
+                                            countLength(CheckList, Jumlah),
+                                            checkTotalCards(CheckList, Total),
+                                            Jumlah =\= Total,!,
+                                            write(NomorAwal), write('. godsHand'), nl, NomorSetelah is NomorAwal+1.
+/*deklarasi fakta*/
+command_godsHand(NomorAwal, NomorAwal).
