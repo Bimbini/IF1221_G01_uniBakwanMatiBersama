@@ -1,10 +1,3 @@
-%:- include('random7cards.pl').
-
-%:- dynamic(last_played/2).
-%:- dynamic(player_hand/2).
-%:- dynamic(current_color/1).
-%:- dynamic(deck/1).
-
 tantang :-
     last_played(PrevPlayer, kartu(hitam, wild_draw_four)), !,
     giliran([Penantang | _]),
@@ -12,7 +5,7 @@ tantang :-
     write('Tantangan dilakukan!'), nl,
     write('Memeriksa kartu '), write(PrevPlayer), write(' ...'), nl,
 
-    current_color(W),
+    warna_sebelumnya(W),
     player_hand(PrevPlayer, KartuPrevPlayer),
 
     (color_match(KartuPrevPlayer, W) ->
@@ -23,9 +16,9 @@ tantang :-
         hukuman(Penantang, 6)
     ),
 
-    retractall(last_played(_, _)),
     retractall(draw(_)), % reset biar gak suruh ambil lagi
     assertz(draw(0)),
+    retractall(warna_sebelumnya(_)),
     currentPlayer.
 
 
