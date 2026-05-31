@@ -8,16 +8,17 @@ hitung_kartu([_|Tail], N) :- hitung_kartu(Tail, NewN),
 uni(Indeks_kartu) :- giliran([Player|_]),
                     player_hand(Player, Cards),
                     hitung_kartu(Cards, 2),
-                    (   
-                        mainkanKartu(Indeks_kartu) ->
-                            format('~w menyerukan UNI! ~n',[Player]),
+                    (  
+                    ambilDariHand(Indeks_kartu, Cards,_)->
+                           format('~w menyerukan UNI! ~n',[Player]),
+                            mainkanKartu(Indeks_kartu),
                             status_uni(ListLama),
                             append_list(ListLama, Player, ListBaru),
                             retractall(status_uni(_)),
                             assertz(status_uni(ListBaru))
                         ;                            
-
-                        true
+                        write('Kartu tidak ada di hand.'),nl,
+                        fail
 
                     ),!.
 
