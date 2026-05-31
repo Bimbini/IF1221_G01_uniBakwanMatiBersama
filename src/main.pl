@@ -32,3 +32,4 @@
 :-include('uni.pl').
 :-include('tangkap.pl').
 :-include('save.pl').
+:-include('load.pl').
