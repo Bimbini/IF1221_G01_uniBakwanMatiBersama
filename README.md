@@ -72,3 +72,6 @@ saveGame. %to save the game
 ```prolog
 loadGame. %to load a game that was saved
 ```
+```prolog
+godsHand. %random chance of happening, moves a card from one player to another
+```
