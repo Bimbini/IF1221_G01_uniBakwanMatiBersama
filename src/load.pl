@@ -87,6 +87,9 @@ prosesInfo(Pemain:List) :-
     assertz(player_hand(Nama, Res)),
     hapusListDeck(Res), !.
 
+prosesInfo(kartu_efek_terakhir(P, W, J, N_turn)) :-
+    assertz(kartu_efek_terakhir(P, W, J, N_turn)).
+    
 convertListKartu([], []).
 convertListKartu([Warna-Jenis | Tail1], [kartu(Warna, Jenis) | Tail2]) :-
     convertListKartu(Tail1, Tail2).

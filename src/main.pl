@@ -10,8 +10,10 @@
 :- dynamic(has_started/0).
 :- dynamic(draw/1).
 :- dynamic(kartu_sebelumnya/2).
+:- dynamic(kartu_efek_terakhir/4).
 :- initialization((draw(_) -> true ; assertz(draw(0)))).
 :- initialization((arah(_) -> true ; assertz(arah(clockwise)))).
+:- initialization(assertz(kartu_efek_terakhir(none, none, none, 0))).
 
 /* FILES */
 :-include('ambilKartu.pl').
@@ -34,3 +36,4 @@
 :-include('tangkap.pl').
 :-include('save.pl').
 :-include('load.pl').
+:-include('mimic.pl').
