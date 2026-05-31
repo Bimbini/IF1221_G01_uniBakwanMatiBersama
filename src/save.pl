@@ -1,12 +1,20 @@
 saveGame :- has_started,
             draw(0),!,
             write('Masukan nama file penyimpanan: '),
-            read(X),
+            readCode(Codes),
+
+            % menambahkan ".txt" di akhir
+            add_tail(Codes, 46, Codes1),
+            add_tail(Codes1, 116, Codes2),
+            add_tail(Codes2, 120, Codes3),
+            add_tail(Codes3, 116, FullCodes),
+
+            name(X, FullCodes),
             open(X, write, S),
             fixed_urutanplayer(ListGiliran),
             format(S,'urutan_pemain:~q.',[ListGiliran]),nl(S),
             giliran([Head|_]),
-            format(S,'giliran:~q',[Head]),nl(S),
+            format(S,'giliran:~q.',[Head]),nl(S),
             last_played(_, kartu(W_kartu_di_meja, J_kartu_di_meja)),
             write(S,'discard_top:'),writeCardtoFile(S,kartu(W_kartu_di_meja, J_kartu_di_meja)),write(S,'.'),nl(S),
             current_color(WarnaAktif),
