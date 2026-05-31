@@ -9,6 +9,7 @@
 :- dynamic(arah/1).
 :- dynamic(has_started/0).
 :- dynamic(draw/1).
+:- dynamic(warna_sebelumnya/1).
 :- initialization((draw(_) -> true ; assertz(draw(0)))).
 :- initialization((arah(_) -> true ; assertz(arah(clockwise)))).
 

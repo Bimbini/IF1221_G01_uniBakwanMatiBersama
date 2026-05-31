@@ -41,6 +41,10 @@ buang_kartu(Pemain, kartu(W,J)) :-
     write(Pemain), write(' memainkan kartu '), write(W), write('-'), write(J), write('.'), nl, nl,
 
     ( W == hitam ->
+        current_color(WarnaLama),
+        retractall(warna_sebelumnya(_)),
+        assertz(warna_sebelumnya(WarnaLama)),
+        
         write('Kartu Hitam!'), nl, inputWarna(WarnaBaru),
 
         retractall(current_color(_)),
