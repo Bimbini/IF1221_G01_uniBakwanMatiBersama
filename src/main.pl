@@ -9,7 +9,7 @@
 :- dynamic(arah/1).
 :- dynamic(has_started/0).
 :- dynamic(draw/1).
-:- dynamic(warna_sebelumnya/1).
+:- dynamic(kartu_sebelumnya/2).
 :- initialization((draw(_) -> true ; assertz(draw(0)))).
 :- initialization((arah(_) -> true ; assertz(arah(clockwise)))).
 
@@ -34,4 +34,3 @@
 :-include('tangkap.pl').
 :-include('save.pl').
 :-include('load.pl').
-:-include('mimic.pl').

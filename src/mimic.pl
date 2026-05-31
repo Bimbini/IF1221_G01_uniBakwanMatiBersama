@@ -1,6 +1,3 @@
-:- dynamic(kartu_efek_terakhir/4).                  %(player, warnakartu, efekkartu, giliran)
-:- initialization(assertz(kartu_efek_terakhir(none, none, none, 0))).
-
 last_effect :-
     kartu_efek_terakhir(P,W,J,N),
     (J == none -> 

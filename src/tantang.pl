@@ -5,10 +5,10 @@ tantang :-
     write('Tantangan dilakukan!'), nl,
     write('Memeriksa kartu '), write(PrevPlayer), write(' ...'), nl,
 
-    warna_sebelumnya(W),
+    kartu_sebelumnya(W, J),
     player_hand(PrevPlayer, KartuPrevPlayer),
 
-    (color_match(KartuPrevPlayer, W) ->
+    (card_match(KartuPrevPlayer, W, J) ->
         write('Tantangan berhasil! '), write(PrevPlayer), write(' mendapatkan 4 kartu tambahan.'), nl,
         hukuman(PrevPlayer, 4)
     ;
@@ -18,15 +18,17 @@ tantang :-
 
     retractall(draw(_)), % reset biar gak suruh ambil lagi
     assertz(draw(0)),
-    retractall(warna_sebelumnya(_)),
+    retractall(kartu_sebelumnya(_, _)),
     currentPlayer.
 
 
 tantang :- 
     write('Gagal, tidak ada kartu Wild Draw Four yang bisa ditantang.'), nl, fail.
 
-color_match([kartu(W, _)|_], W) :- W \== hitam, !.
-color_match([_|Tail], W) :- color_match(Tail, W).
+card_match([], _, _) :- fail.
+card_match([kartu(W, _) | _], W, _) :- W \== hitam, !.
+card_match([kartu(_, J) | _], _, J) :- !.
+card_match([_ | Tail], W, J) :- card_match(Tail, W, J).
 
 hukuman(Pemain, N) :-
     deck(DeckLama),

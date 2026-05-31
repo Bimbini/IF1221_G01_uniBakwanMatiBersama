@@ -19,6 +19,10 @@ mainkanKartu(Urutan) :-
         last_played(_, kartu(_, J_kartu_di_meja)),
         current_color(W_kartu_di_meja),
         ( can_throw(kartu(W, J), kartu(W_kartu_di_meja, J_kartu_di_meja), Handlist) ->
+            
+            retractall(kartu_sebelumnya(_, _)),
+            assertz(kartu_sebelumnya(W_kartu_di_meja, J_kartu_di_meja)),
+            
             buang_kartu(PemainSaatIni, kartu(W,J))
         ;
             write('Gagal, kartu tidak cocok.'), nl,
@@ -51,9 +55,6 @@ buang_kartu(Pemain, kartu(W,J)) :-
     write(Pemain), write(' memainkan kartu '), write(W), write('-'), write(J), write('.'), nl, nl,
 
     ( W == hitam, J \== mimic ->
-        current_color(WarnaLama),
-        retractall(warna_sebelumnya(_)),
-        assertz(warna_sebelumnya(WarnaLama)),
         
         write('Kartu Hitam!'), nl, inputWarna(WarnaBaru),
         retractall(current_color(_)),
