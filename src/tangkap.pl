@@ -6,8 +6,9 @@ tangkap(Player) :- player_hand(Player, Cards),
                 currentPlayer.
 
 tangkap(_) :- giliran([Penangkap|_]),
-                    format('Perintah tidak valid! Anda mendapatkan 1 kartu penalti.'), nl,
+                    write('Perintah tidak valid! Anda mendapatkan 1 kartu penalti.'), nl,
                     player_hand(Penangkap, KartuPenangkap),
-                    ambilKartuPenalti(Penangkap,KartuPenangkap).
+                    ambilKartuPenalti(Penangkap,KartuPenangkap),
+                    currentPlayer.
 
 
