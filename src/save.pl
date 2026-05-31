@@ -24,6 +24,8 @@ saveGame :- has_started,
             status_uni(ListUni),
             format(S,'status_UNI:~q.',[ListUni]),nl(S),
             cetakKartuNPemain(S,ListGiliran),
+            kartu_efek_terakhir(P, W, J, N_turn),
+            format(S,'kartu_efek_terakhir(~q, ~q, ~q, ~w).', [P, W, J, N_turn]), nl(S),
             close(S),
             retractall(has_started),
             write('Save berhasil! Permainan diberhentikan.'), resetGame.

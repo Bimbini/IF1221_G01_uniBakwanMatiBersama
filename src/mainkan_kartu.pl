@@ -30,6 +30,16 @@ mainkanKartu(Urutan) :-
     ).
 
 buang_kartu(Pemain, kartu(W,J)) :-
+    (J == mimic ->
+        write('Menelusuri riwayat permainan.'), nl,
+        last_effect
+        ;
+        (angka(J) ->
+            catat_giliran
+            ;
+            true
+        )
+    ),
     retract(player_hand(Pemain, OldHand)),
     remove_first(kartu(W,J), OldHand, NewHand),
     assertz(player_hand(Pemain, NewHand)),
@@ -40,13 +50,12 @@ buang_kartu(Pemain, kartu(W,J)) :-
     % Print main apa baru tanya warna
     write(Pemain), write(' memainkan kartu '), write(W), write('-'), write(J), write('.'), nl, nl,
 
-    ( W == hitam ->
+    ( W == hitam, J \== mimic ->
         current_color(WarnaLama),
         retractall(warna_sebelumnya(_)),
         assertz(warna_sebelumnya(WarnaLama)),
         
         write('Kartu Hitam!'), nl, inputWarna(WarnaBaru),
-
         retractall(current_color(_)),
         assertz(current_color(WarnaBaru)),
 
@@ -56,7 +65,7 @@ buang_kartu(Pemain, kartu(W,J)) :-
         assertz(current_color(W)) 
     ),
 
-    ( player_hand(Pemain, []) -> endGame(Pemain) ; efek_kartu(_, J) ).
+    ( player_hand(Pemain, []) -> endGame(Pemain) ; efek_kartu(Pemain, J) ).
 
 remove_first(X, [X|T], T).
 remove_first(X, [H|T], [H|R]) :-

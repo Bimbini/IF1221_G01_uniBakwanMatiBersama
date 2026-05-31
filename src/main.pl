@@ -34,3 +34,4 @@
 :-include('tangkap.pl').
 :-include('save.pl').
 :-include('load.pl').
+:-include('mimic.pl').

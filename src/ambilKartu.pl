@@ -6,12 +6,15 @@ ambilKartu :-                  %ambilKartu kalo draw2/4
     assertz(draw(0)),
     format('~w harus mengambil ~w kartu!~n', [Player, N]),
     ambilNKartu(N, Player),
+    catat_giliran,
     currentPlayer.              %next
 
 
 ambilKartu :-                   %ambilKartu normal
     giliran([Player | _]),
+    (draw(0) -> true;draw(_)),
     ambilNKartu(1, Player),
+    catat_giliran,
     currentPlayer.
 
 % Ambil N kartu acak dari deck, maskin ke tangan player.

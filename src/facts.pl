@@ -20,6 +20,14 @@ special(reverse).
 wild_card(wild).
 wild_card(wild_draw_four). 
 
+% mimic
+mimic_card(mimic).
+action_card(skip).
+action_card(reverse).
+action_card(draw_two).
+action_card(wild).
+action_card(wild_draw_four).
+
 all_cards([
     kartu(merah, 0), kartu(merah, 1), kartu(merah, 2), kartu(merah, 3), 
     kartu(merah, 4), kartu(merah, 5), kartu(merah, 6), kartu(merah, 7), 
@@ -41,5 +49,6 @@ all_cards([
     kartu(biru, 8), kartu(biru, 9), kartu(biru, skip), kartu(biru, reverse), 
     kartu(biru, draw_two),
     
-    kartu(hitam, wild), kartu(hitam, wild_draw_four)
+    kartu(hitam, wild), kartu(hitam, wild_draw_four),
+    kartu(hitam,mimic)
 ]).

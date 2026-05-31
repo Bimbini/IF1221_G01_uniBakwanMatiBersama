@@ -7,7 +7,9 @@ cekInfo :-
     jumlah_di_list(ListGiliran, JumlahPemain),
     write('Urutan pemain: '), printUrutan(ListGiliran, JumlahPemain), nl, nl,
     
-    printInfo(ListGiliran, 1, JumlahPemain).
+    printInfo(ListGiliran, 1, JumlahPemain),
+    nl,
+    last_effect, nl, nl.
 
 
 % Print nama sesuai list giliran
