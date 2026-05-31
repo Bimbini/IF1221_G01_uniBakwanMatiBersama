@@ -75,10 +75,8 @@ prosesInfo(discard_top:Warna-Jenis) :- !,
 prosesInfo(warna_aktif:Warna) :- !,
     assertz(current_color(Warna)).
 
-prosesInfo(arah_permainan:kanan) :- !,
-    assertz(arah(clockwise)).
-prosesInfo(arah_permainan:kiri) :- !,
-    assertz(arah(counter_clockwise)).
+prosesInfo(arah_permainan:Arah) :- !,
+    assertz(arah(Arah)).
 
 prosesInfo(status_UNI:Status) :- !,
     assertz(status_uni(Status)).
